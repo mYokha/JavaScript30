@@ -58,18 +58,54 @@ const bands = ['The Plot in You',
                'Anywhere But Here',
                'An Old Dog'];
 
-function strip(bandName){
-  return bandName.replace(/^(a |the |an )/i, '').trim();
+const parsedBands = [];
+bands.map(band => {
+  const obj = {
+    article: '',
+    name: ''
+  };
+
+  if(band.startsWith('A ')){
+    obj.article = 'A';
+    obj.name = band.slice(2);
+  } else if ( band.startsWith('An ')) {
+    obj.article = 'An';
+    obj.name = band.slice(3);
+  } else if ( band.startsWith('The ')) {
+    obj.article = 'The';
+    obj.name = band.slice(4);
+  } else {
+    obj.article = '';
+    obj.name = band;
+  }
+  parsedBands.push(obj);
+});
+//console.log(parsedBands);
+
+parsedBands.sort((a,b) => {
+  if (a.name > b.name){
+    return 1;
+  } else {
+    return -1;
+  }
+});
+
+//console.log(parsedBands);
+
+bandsEl = document.querySelector('#bands');
+
+function print(arrOfElems) {
+  let liArr = [];
+
+  arrOfElems.map((arrOfElems) => {
+    const li = `<li>${arrOfElems.article ? arrOfElems.article + ' ': ''}${arrOfElems.name}</li>`;
+    liArr.push(li);
+  });
+
+  return liArr;
 }
 
-const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
-document.querySelector('#bands').innerHTML =
-  sortedBands
-    .map(band => `<li>${band}</li>`)
-    .join('');
-
-console.log(sortedBands);
-
+bandsEl.innerHTML = print(parsedBands).join('');
 </script>
 
 </body>

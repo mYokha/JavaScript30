@@ -1,7 +1,7 @@
 html {
   box-sizing: border-box;
   background:#eeeeee;
-  font-family:'helvetica neue';
+  font-family: 'Open Sans', sans-serif;;
   font-size: 20px;
   font-weight: 200;
 }
@@ -21,6 +21,10 @@ body {
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
   transform: scale(0.98);
   transition: transform 0.5s;
+}
+
+.fixed-nav .site-wrap {
+  transform: scale(1);
 }
 
 header {
@@ -48,6 +52,11 @@ nav {
   z-index: 1;
 }
 
+.fixed-nav nav{
+  position: fixed;
+  box-shadow: 0 5px rgba(0,0,0,0.1);
+}
+
 nav ul {
   margin: 0;
   padding:0;
@@ -72,13 +81,18 @@ li.logo {
   font-size: 30px;
 }
 
+.fixed-nav li.logo {
+  min-width: 50px;
+  max-width: 500px;
+}
+
 li.logo a {
   color:black;
 }
 
 nav a {
   text-decoration: none;
-  padding:20px;
+  padding:0.5em;
   display: inline-block;
   color:white;
   transition:all 0.2s;

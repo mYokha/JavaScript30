@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sticky Nav</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="style-START.css">
 </head>
 <body>
@@ -54,7 +55,20 @@
   </div>
 
 <script>
+  const nav = document.querySelector('#main');
+  const topOfNav = nav.offsetTop;
 
+  function fixNav() {
+    if (window.scrollY >= topOfNav) {
+      document.body.classList.add('fixed-nav');
+      document.body.style.paddingTop = nav.offsetHeight + 'px';
+    } else {
+      document.body.style.paddingTop = 0;
+      document.body.classList.remove('fixed-nav');
+    }
+  }
+
+  window.addEventListener('scroll', fixNav);
 </script>
 
 </body>
